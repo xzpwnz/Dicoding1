@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -30,7 +29,6 @@ import picodiploma.dicoding.moviesubmission3.ui.main.MovieViewModel.MoviePopular
  */
 public class MovieFragment extends Fragment {
     private MoviePopularAdapter mpAdapter;
-    private MoviePopularViewModel mpViewModel;
     @BindView(R.id.rv_movie_populer)
     RecyclerView rvMoviePopular;
 
@@ -40,7 +38,7 @@ public class MovieFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_movie, container, false);
@@ -49,13 +47,14 @@ public class MovieFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        MoviePopularViewModel mpViewModel;
         ButterKnife.bind(this, view);
 
         mpAdapter = new MoviePopularAdapter();
         mpAdapter.notifyDataSetChanged();
 
-        rvMoviePopular.setLayoutManager(new LinearLayoutManager(getActivity()));
+        rvMoviePopular.setLayoutManager(new LinearLayoutManager(getActivity(), RecyclerView.HORIZONTAL, view.isInLayout()));
+
         rvMoviePopular.setAdapter(mpAdapter);
 
         mpViewModel = ViewModelProviders.of(this).get(MoviePopularViewModel.class);
@@ -67,7 +66,7 @@ public class MovieFragment extends Fragment {
 
     private Observer<ArrayList<MoviePopulerData>> getMoviePopular = new Observer<ArrayList<MoviePopulerData>>() {
         @Override
-        public void onChanged(@Nullable ArrayList<MoviePopulerData> moviePopulerData) {
+        public void onChanged(ArrayList<MoviePopulerData> moviePopulerData) {
             if (moviePopulerData != null) {
                 mpAdapter.setMpData(moviePopulerData);
 

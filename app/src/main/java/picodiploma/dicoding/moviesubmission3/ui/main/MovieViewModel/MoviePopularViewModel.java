@@ -26,7 +26,7 @@ public class MoviePopularViewModel extends ViewModel {
         AsyncHttpClient client = new AsyncHttpClient();
         final ArrayList<MoviePopulerData> listItemMp = new ArrayList<>();
         String API_KEY = "848001472ba79b519655a14b11681993";
-        String url = "https://api.themoviedb.org/3/discover/movie?api_key=" + API_KEY + "&language=en-US";
+        String url = "https://api.themoviedb.org/3/movie/popular?api_key=" + API_KEY + "&language=en-US&page=1";
 
         client.get(url, new AsyncHttpResponseHandler() {
             @Override

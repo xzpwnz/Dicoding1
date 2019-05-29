@@ -22,9 +22,9 @@ import picodiploma.dicoding.moviesubmission3.models.moviemodels.MoviePopulerData
 public class MoviePopularAdapter extends RecyclerView.Adapter<MoviePopularAdapter.MoviePopularViewHolder> {
     private ArrayList<MoviePopulerData> mpData = new ArrayList<>();
 
-    public void setMpData(ArrayList<MoviePopulerData> mpData) {
+    public void setMpData(ArrayList<MoviePopulerData> items) {
         this.mpData.clear();
-        mpData.addAll(mpData);
+        mpData.addAll(items);
         notifyDataSetChanged();
     }
 
@@ -45,23 +45,23 @@ public class MoviePopularAdapter extends RecyclerView.Adapter<MoviePopularAdapte
         return mpData.size();
     }
 
-    public class MoviePopularViewHolder extends RecyclerView.ViewHolder {
+    class MoviePopularViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.img_photo)
         ImageView imgPhoto;
         @BindView(R.id.txt_title)
         TextView txtTitle;
-        @BindView(R.id.txt_vote)
-        TextView txtVote;
+        @BindView(R.id.txt_popularity)
+        TextView txtPopularity;
 
-        public MoviePopularViewHolder(@NonNull View itemView) {
+        MoviePopularViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
 
-        void bind(MoviePopulerData mpData) {
-            txtTitle.setText(mpData.getTitle());
-            txtVote.setText(Integer.toString(mpData.getVoteCount()));
-            Glide.with(itemView).load(mpData.getPosterPath())
+        void bind(MoviePopulerData populerData) {
+            txtTitle.setText(populerData.getTitle());
+            txtPopularity.setText(String.valueOf(populerData.getPopularity()));
+            Glide.with(itemView).load(populerData.getPosterPath())
                     .apply(new RequestOptions().override(120, 180))
                     .into(imgPhoto);
         }

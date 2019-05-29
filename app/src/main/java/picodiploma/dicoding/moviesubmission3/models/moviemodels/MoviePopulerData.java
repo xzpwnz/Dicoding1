@@ -11,6 +11,8 @@ public class MoviePopulerData {
     private String overview;
     private String releaseDate;
     private String languange;
+    private Number voteAvetage;
+    private Number popularity;
     private int id;
 
     public String getTitle() {
@@ -69,6 +71,22 @@ public class MoviePopulerData {
         this.id = id;
     }
 
+    public Number getVoteAvetage() {
+        return voteAvetage;
+    }
+
+    public void setVoteAvetage(Number voteAvetage) {
+        this.voteAvetage = voteAvetage;
+    }
+
+    public Number getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Number popularity) {
+        this.popularity = popularity;
+    }
+
     public MoviePopulerData(JSONObject object) {
         try {
             this.id = object.getInt("id");
@@ -77,8 +95,10 @@ public class MoviePopulerData {
             this.releaseDate = object.getString("release_date");
             this.languange = object.getString("original_language");
             String poster= object.getString("poster_path" );
-            this.posterPath = "https://image.tmdb.org/t/p/w92/" + poster;
+            this.posterPath = "https://image.tmdb.org/t/p/w342/" + poster;
             this.voteCount = object.getInt("vote_count");
+            this.voteAvetage = (Number) object.get("vote_average");
+            this.popularity = (Number) object.get("popularity");
         } catch (Exception e) {
             e.printStackTrace();
             Log.d("Error Data", e.getMessage());
