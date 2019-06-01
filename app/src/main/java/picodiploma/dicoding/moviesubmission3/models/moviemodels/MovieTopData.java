@@ -6,7 +6,7 @@ import android.util.Log;
 
 import org.json.JSONObject;
 
-public class MoviePopulerData implements Parcelable {
+public class MovieTopData implements Parcelable {
     private String title;
     private int voteCount;
     private String posterPath;
@@ -65,14 +65,6 @@ public class MoviePopulerData implements Parcelable {
         this.languange = languange;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public Number getVoteAvetage() {
         return voteAvetage;
     }
@@ -89,7 +81,15 @@ public class MoviePopulerData implements Parcelable {
         this.popularity = popularity;
     }
 
-    public MoviePopulerData(JSONObject object) {
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public MovieTopData(JSONObject object) {
         try {
             this.id = object.getInt("id");
             this.title = object.getString("title");
@@ -126,7 +126,7 @@ public class MoviePopulerData implements Parcelable {
         dest.writeInt(this.id);
     }
 
-    protected MoviePopulerData(Parcel in) {
+    protected MovieTopData(Parcel in) {
         this.title = in.readString();
         this.voteCount = in.readInt();
         this.posterPath = in.readString();
@@ -138,15 +138,15 @@ public class MoviePopulerData implements Parcelable {
         this.id = in.readInt();
     }
 
-    public static final Parcelable.Creator<MoviePopulerData> CREATOR = new Parcelable.Creator<MoviePopulerData>() {
+    public static final Parcelable.Creator<MovieTopData> CREATOR = new Parcelable.Creator<MovieTopData>() {
         @Override
-        public MoviePopulerData createFromParcel(Parcel source) {
-            return new MoviePopulerData(source);
+        public MovieTopData createFromParcel(Parcel source) {
+            return new MovieTopData(source);
         }
 
         @Override
-        public MoviePopulerData[] newArray(int size) {
-            return new MoviePopulerData[size];
+        public MovieTopData[] newArray(int size) {
+            return new MovieTopData[size];
         }
     };
 }

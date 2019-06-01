@@ -18,11 +18,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/img_popular"
+        android:id="@+id/img_star"
         android:layout_width="24dp"
         android:layout_height="24dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/ic_insert_chart_black_24dp"
+        android:src="@drawable/ic_date_range_black_24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txt_title"
@@ -50,10 +50,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="@+id/img_popular"
-        app:layout_constraintStart_toEndOf="@+id/img_popular"
-        app:layout_constraintTop_toTopOf="@+id/img_popular"
-        tools:text="45184" />
+        app:layout_constraintBottom_toBottomOf="@+id/img_star"
+        app:layout_constraintStart_toEndOf="@+id/img_star"
+        app:layout_constraintTop_toTopOf="@+id/img_star"
+        tools:text="28/06/2019" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
